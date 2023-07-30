@@ -1,24 +1,26 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@extends('layouts.app')
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@section('content')
 
-    <title>Laravel</title>
-
-    <!-- Fonts -->
-    <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-
-    <!-- Styles -->
-    @vite('resources/js/app.js')
-
-</head>
-
-<body>
-
-
-
-</body>
-
-</html>
+    <div class="bg-color-main">
+        <div class="container">
+            <div class="row py-5 position-relative">
+                @foreach($comics as $id => $comic)
+                    <div class="col-2 py-3">
+                        <a href="{{ route('comics.show', $id) }}">
+                            <div class="card bg-color-main">
+                                <img class="thumbnail-size" src="{{ $comic['thumb'] }}">
+                                <h5 class="fs-6 text-uppercase text-white mt-2">{{ $comic['series'] }}</h5>
+                            </div>
+                        </a>
+                    </div>
+                @endforeach
+                <div class="d-flex justify-content-center">
+                    <button type="button">LOAD MORE</button>
+                </div>
+                <div class="col-2 current-series">CURRENT SERIES</div>
+            </div>
+        </div>
+    </div>
+        
+@endsection
